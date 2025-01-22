@@ -1,0 +1,22 @@
+service: my-serverless-app
+
+provider:
+  name: aws
+  runtime: dotnet6
+  stage: dev
+  region: us-east-1
+
+functions:
+  function1:
+    handler: MyServerlessApp::MyServerlessApp.Function::FunctionHandler
+    events:
+      - httpApi:
+          path: /function1
+          method: get
+
+resources:
+  Resources:
+    MyApiGateway:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: my-api
